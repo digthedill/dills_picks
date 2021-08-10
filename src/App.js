@@ -1,80 +1,63 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import SideBar from "./components/SideBar"
+import Main from "./components/Main"
 import styled from "styled-components"
-import axios from "axios"
-import { Container, Wrapper, SearchContainer } from "./styles/app-styles"
-import useInitializeToken from "./hooks/useInitializeToken"
+import bgCircles from "./assets/purple_circles.png"
 
 const App = () => {
-  const [searchInput, setSearch] = useState("")
-  const [searchResults, setSearchResults] = useState([])
-  const token = useInitializeToken()
-
-  useEffect(() => {
-    axios
-      .get("https://api.spotify.com/v1/search", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        params: {
-          q: searchInput,
-          type: "artist",
-          limit: 6,
-        },
-      })
-      .then((response) => {
-        setSearchResults(response.data.artists.items)
-      })
-  }, [searchInput])
+  const [userSelections, setUserSelections] = useState([])
 
   return (
     <Container>
       <Wrapper>
-        <SearchResults>
-          {searchResults &&
-            searchResults.map((item) => {
-              return (
-                <div key={item.id}>
-                  <h2>{item.name}</h2>
-                  {item.images[0] && (
-                    <img
-                      src={item.images[0].url}
-                      alt={item.name}
-                      style={{
-                        width: "300px",
-                        height: "300px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
-                </div>
-              )
-            })}
-        </SearchResults>
-
-        <SearchContainer>
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Elvis"
-          />
-          <button>Search</button>
-        </SearchContainer>
+        <SideBar
+          userSelections={userSelections}
+          setUserSelections={setUserSelections}
+        />
+        <Main userSelections={userSelections} />
       </Wrapper>
     </Container>
   )
 }
 
-const SearchResults = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 900px;
-  gap: 0.5rem;
-  h2 {
-    font-weight: 600;
-    letter-spacing: 0.1rem;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 3.4rem;
   }
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`
+
+const Container = styled.main`
+  color: #333;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  /* BG*/
+  background-image: url(${bgCircles}),
+    linear-gradient(
+      90deg,
+      rgba(104, 166, 200, 1) 35%,
+      rgba(118, 200, 104, 1) 100%
+    );
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background: rgb(104, 166, 200); */
 `
 
 export default App

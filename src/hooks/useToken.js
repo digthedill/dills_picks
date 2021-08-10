@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-const useInitializeToken = () => {
+const useToken = () => {
   const [token, setToken] = useState("")
 
   useEffect(() => {
@@ -26,4 +26,4 @@ const useInitializeToken = () => {
   return token
 }
 
-export default useInitializeToken
+export default useToken
