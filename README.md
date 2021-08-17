@@ -6,6 +6,6 @@ Under Development
 
 ### Things to add:
 
--Typescript
--Unit Tests
--Cleaner Organization
+- Typescript
+- Unit Tests
+- Cleaner Organization
