@@ -16,7 +16,6 @@ const Playlist = ({ userSelections, playlist, setPlaylist }) => {
 const Container = styled.div`
   margin: 3rem 0;
   overflow-y: auto;
-  max-width: 650px;
 
   @media (max-width: 850px) {
     display: flex;
