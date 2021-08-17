@@ -3,13 +3,13 @@ import styled from "styled-components"
 
 const PlaylistTrack = ({ children }) => {
   const song = children
-  // console.log(song)
   const albumArtwork = song.album.images[2].url //medium size
   const trackName = song.name
   const artist = song.artists[0].name
   const previewUrl = song.preview_url
 
   useEffect(() => {
+    // function for preventing multiple previews to play at once
     document.addEventListener(
       "play",
       (e) => {

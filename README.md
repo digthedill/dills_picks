@@ -1,11 +1,15 @@
+- Create custom audio player
+- link user spotify information
+- add artist profile on hover state
+- discogs API?
+
 # Dills Picks
 
 React, Spotify API, styled-components web app to create playlists.
 
 Under Development
 
-### Things to add:
+### Big Boy Things to add:
 
 - Typescript
 - Unit Tests
-- Cleaner Organization
