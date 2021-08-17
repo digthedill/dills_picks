@@ -1,7 +1,7 @@
 - Create custom audio player
 - link user spotify information
 - add artist profile on hover state
-- discogs API?
+- discogs API? [https://www.discogs.com/developers#page:home,header:home-general-information]
 
 # Dills Picks
 
