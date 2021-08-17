@@ -31,6 +31,8 @@ const Wrapper = styled.div`
   height: 100%;
   background-color: rgba(255, 255, 255, 0.1);
   display: flex;
+  margin-bottom: 2rem;
+
   h1 {
     font-size: 3.4rem;
   }
@@ -39,9 +41,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    overflow-y: scroll;
-    /* background: rgba(0, 0, 0, 0.3); */
+    justify-content: safe;
   }
 `
 
@@ -54,7 +54,6 @@ const Container = styled.main`
 
   /* BG*/
   background-image: url(${bg});
-
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

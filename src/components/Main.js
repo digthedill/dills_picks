@@ -3,7 +3,7 @@ import Playlist from "./Playlist"
 
 const Main = ({ userSelections, playlist, setPlaylist }) => {
   return (
-    <Container>
+    <Container playlist={playlist}>
       {playlist.length < 1 && (
         <WelcomeText>
           <h2>
@@ -27,6 +27,7 @@ const WelcomeText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   h2 {
     font-size: 5rem;
     color: #f4f4f4;
@@ -47,9 +48,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   @media (max-width: 850px) {
-    margin-left: 5rem;
-    max-width: 600px;
+    display: ${(props) => (props.playlist.length < 1 ? "none" : "block")};
+    max-width: 650px;
   }
 `
 
