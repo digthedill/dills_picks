@@ -29,9 +29,15 @@ const WelcomeText = styled.div`
   align-items: center;
 
   h2 {
-    font-size: 5rem;
+    font-size: 6.5rem;
     color: #f4f4f4;
     padding-left: 0.5rem;
+    margin-left: 4rem;
+  }
+  @media (max-width: 1000px) {
+    h2 {
+      font-size: 5rem;
+    }
   }
   @media (max-width: 850px) {
     h2 {
