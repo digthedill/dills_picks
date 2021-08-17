@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
+import CreatePlaylistBtn from "./CreatePlaylistBtn"
 import SearchBar from "./SearchBar"
 
-const SideBar = ({ userSelections, setUserSelections }) => {
+const SideBar = ({ userSelections, setUserSelections, setPlaylist }) => {
   return (
     <Container>
       <Title>
@@ -24,6 +25,10 @@ const SideBar = ({ userSelections, setUserSelections }) => {
             return <div key={artist.id}>{artist.name}</div>
           })}
       </ChosenArtist>
+      <CreatePlaylistBtn
+        userSelections={userSelections}
+        setPlaylist={setPlaylist}
+      />
     </Container>
   )
 }
@@ -61,8 +66,6 @@ const Title = styled.div`
     margin: 0;
     color: #e8f5e9;
     letter-spacing: 2px;
-    padding: 0.4rem 0;
-    backdrop-filter: grayscale(55);
   }
 `
 
@@ -71,19 +74,25 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  min-width: 400px;
+  /* width: 100%; */
 
-  min-width: 350px;
-  padding: 0 4.5rem;
-  background: rgba(0, 0, 0, 0.1);
+  padding: 0 0 0 4.5rem;
+  background: rgba(0, 0, 0, 0.3);
   /* backdrop-filter: blur(17px); */
   height: 100%;
   /* width: 100%; */
 
   @media (max-width: 850px) {
-    min-width: 100%;
+    /* min-width: 100vw; */
+    width: 100%;
+    background: none;
     display: flex;
     justify-content: center;
-    margin-left: 2rem;
+    align-items: center;
+  }
+
+  @media (max-width: 500px) {
   }
 `
 
