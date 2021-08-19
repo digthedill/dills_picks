@@ -120,7 +120,6 @@ const SearchBar = ({ userSelections, setUserSelections }) => {
 
 const SearchContainer = styled.form`
   display: flex;
-
   position: relative;
 
   &:focus-within label {
@@ -130,7 +129,6 @@ const SearchContainer = styled.form`
     font-size: 16px;
   }
   &:focus-within button {
-    color: #e8eaf6;
     border: 1px solid #e8eaf6;
   }
 

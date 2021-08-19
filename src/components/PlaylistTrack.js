@@ -1,48 +1,51 @@
-import { useState, useEffect } from "react"
+import { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import {
-  AiOutlinePlayCircle as PlayIcon,
-  AiFillPauseCircle as PauseIcon,
-} from "react-icons/ai"
+  BsFillPlayFill as PlayIcon,
+  BsFillPauseFill as PauseIcon,
+} from "react-icons/bs"
 
-const PlaylistTrack = ({ children }) => {
-  const [played, setPlayed] = useState(false)
+const PlaylistTrack = ({ children, currentlyPlaying, setCurrentlyPlaying }) => {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioPlayer = useRef()
 
+  //song preview object
   const song = children
-  const albumArtwork = song.album.images[1].url //large size
+  const albumArtwork = song.album.images[1].url //med size
   const trackName = song.name
   const artist = song.artists[0].name
   const previewUrl = song.preview_url
-
-  let audioEle
-  if (previewUrl) {
-    audioEle = new Audio(previewUrl)
-  } else {
-    audioEle = null
-  }
+  const id = song.id
 
   useEffect(() => {
-    // function for preventing multiple previews to play at once
-    document.addEventListener(
-      "play",
-      (e) => {
-        const audios = document.getElementsByTagName("audio")
-        for (let i = 0; i < audios.length; i++) {
-          if (audios[i] !== e.target) {
-            audios[i].pause()
-          }
-        }
-      },
-      true
-    )
-  }, [])
+    if (currentlyPlaying !== id) setIsPlaying(false)
+  }, [currentlyPlaying, id])
+
+  const playPreview = () => {
+    if (previewUrl) {
+      setIsPlaying(true)
+      setCurrentlyPlaying(id)
+      audioPlayer.current.play()
+      if (isPlaying) {
+        audioPlayer.current.pause()
+        setIsPlaying(false)
+      }
+    } else return
+    return
+  }
 
   return (
     <Container>
       <Wrapper>
-        <AudioPlayer>
+        <AudioPlayerStyles onClick={playPreview} url={previewUrl}>
           <div>
-            {played ? (
+            <audio
+              src={previewUrl}
+              ref={audioPlayer}
+              preload="metadata"
+              id={id}
+            />
+            {isPlaying ? (
               <PauseIcon className="pauseIcon" />
             ) : (
               <PlayIcon className="playIcon" />
@@ -55,7 +58,7 @@ const PlaylistTrack = ({ children }) => {
             width="150"
             height="150"
           />
-        </AudioPlayer>
+        </AudioPlayerStyles>
         <div>
           <h5>{trackName}</h5>
           <p>{artist}</p>
@@ -64,26 +67,31 @@ const PlaylistTrack = ({ children }) => {
     </Container>
   )
 }
-const AudioPlayer = styled.div`
+const AudioPlayerStyles = styled.div`
+  cursor: ${({ url }) => (url ? "pointer" : "auto")};
   position: relative;
+  margin: 0 1rem;
 
   .thumbnail-preview {
     z-index: 1;
+    box-shadow: 0 7px 7px rgba(0, 0, 0, 0.7);
   }
+
   div {
     width: 150px;
     height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: absolute;
+    background: rgba(255, 255, 255, 0.3);
   }
   .playIcon,
   .pauseIcon {
-    width: 100px;
-    height: 100px;
-    color: #f4f4f4;
+    display: ${({ url }) => (url ? "block" : "none")};
+    color: #000;
+    width: 70px;
+    height: 70px;
     z-index: 20;
   }
 `
@@ -92,7 +100,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: start;
   div {
-    margin-left: 0.4rem;
     color: #fff;
     h5 {
       font-size: 1.5rem;
