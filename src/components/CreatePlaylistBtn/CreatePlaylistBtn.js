@@ -3,8 +3,7 @@ import axios from "axios"
 import useToken from "../../hooks/useToken"
 import stringifySelections from "../../utils/stringifySelections"
 
-import { Container } from "./styles"
-import { Button } from "../../styles/tools"
+import { Container, Button } from "./styles"
 import { FaSpotify } from "react-icons/fa"
 
 const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {

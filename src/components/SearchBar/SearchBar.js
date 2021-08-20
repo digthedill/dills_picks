@@ -1,51 +1,32 @@
-import axios from "axios"
 import { useState } from "react"
 import useToken from "../../hooks/useToken"
 
-import Autocomplete from "react-autocomplete"
+import getPlaylistObject from "../../utils/getPlaylistObject"
 
-import { Container, SearchContainer } from "./styles"
-import { Button } from "../../styles/tools"
+import Autocomplete from "react-autocomplete"
+import { Container, SearchContainer, Button } from "./styles"
+import { AiOutlineArrowRight as ArrowIcon } from "react-icons/ai"
+
+/**
+ * style more appropriately
+ *
+ * created function to refine search parameters based on query
+ * Or additional params yet to be coded like "min_tempo"
+ *
+ * Fix autocomplete -> use a different component
+ */
 
 const SearchBar = ({ userSelections, setUserSelections }) => {
-  // state
   const [searchInput, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
   const [error, setError] = useState("")
   const token = useToken()
 
-  /**TODO
-   *
-   *
-   *  style more appropriately
-   *  work on exact matches
-   */
-
-  // created function to refine search parameters based on query
-  // Or additional params yet to be coded like "min_tempo"
-  const getSpotifyObject = (token, query, cb) => {
-    axios
-      .get("https://api.spotify.com/v1/search", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        params: {
-          q: query,
-          type: "artist,track,album",
-          limit: 5,
-        },
-      })
-      .then((response) => {
-        cb(response.data.artists.items)
-      })
-  }
-
   const handleSearch = (e) => {
     setSearch(e.target.value)
     if (searchInput.length > 1) {
-      getSpotifyObject(token, searchInput, setSearchResults)
+      getPlaylistObject(token, searchInput, setSearchResults)
     }
   }
 
@@ -118,7 +99,10 @@ const SearchBar = ({ userSelections, setUserSelections }) => {
             Choose Artist
           </label>
         </SearchContainer>
-        <Button type="submit">Search</Button>
+
+        <Button type="submit">
+          <ArrowIcon />
+        </Button>
       </Container>
       <p style={{ color: "red", maxWidth: "300px", margin: "1rem 0" }}>
         {error}
