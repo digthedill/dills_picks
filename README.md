@@ -1,3 +1,4 @@
+- create custom autocomplete component https://www.youtube.com/watch?v=vXO5JMiKtM8&ab_channel=LessononCoding
 - Create custom audio player
 - link user spotify information
 - add artist profile on hover state
