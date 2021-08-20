@@ -1,37 +1,4 @@
-import React from "react"
 import styled from "styled-components"
-import CreatePlaylistBtn from "./CreatePlaylistBtn"
-import SearchBar from "./SearchBar"
-
-const SideBar = ({ userSelections, setUserSelections, setPlaylist }) => {
-  return (
-    <Container>
-      <Title>
-        <h1>
-          Dill's <span>Picks</span>
-        </h1>
-        <h3>
-          Add your favorite artists <br />
-          to generate dill's picks
-        </h3>
-      </Title>
-      <SearchBar
-        userSelections={userSelections}
-        setUserSelections={setUserSelections}
-      />
-      <ChosenArtist>
-        {userSelections &&
-          userSelections.map((artist) => {
-            return <div key={artist.id}>{artist.name}</div>
-          })}
-      </ChosenArtist>
-      <CreatePlaylistBtn
-        userSelections={userSelections}
-        setPlaylist={setPlaylist}
-      />
-    </Container>
-  )
-}
 
 // for 'ChosenArtist'
 // create a button to remove from userSelections
@@ -104,4 +71,4 @@ const Container = styled.div`
   }
 `
 
-export default SideBar
+export { Container, ChosenArtist, Title }

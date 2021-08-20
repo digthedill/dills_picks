@@ -1,5 +1,5 @@
 import { useState } from "react"
-import SideBar from "./components/SideBar"
+import Sidebar from "./components/Sidebar"
 import Main from "./components/Main"
 import styled from "styled-components"
 import bg from "./assets/bg_dark.png"
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Container>
       <Wrapper>
-        <SideBar
+        <Sidebar
           userSelections={userSelections}
           setUserSelections={setUserSelections}
           setPlaylist={setPlaylist}

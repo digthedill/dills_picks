@@ -1,26 +1,4 @@
 import styled from "styled-components"
-import Playlist from "./Playlist"
-
-const Main = ({ userSelections, playlist, setPlaylist }) => {
-  return (
-    <Container playlist={playlist}>
-      {playlist.length < 1 && (
-        <WelcomeText>
-          <h2>
-            The artists you love <br />
-            bring the music <br />
-            you need
-          </h2>
-        </WelcomeText>
-      )}
-      <Playlist
-        userSelections={userSelections}
-        playlist={playlist}
-        setPlaylist={setPlaylist}
-      />
-    </Container>
-  )
-}
 
 const WelcomeText = styled.div`
   width: 100%;
@@ -61,4 +39,4 @@ const Container = styled.div`
   }
 `
 
-export default Main
+export { WelcomeText, Container }
