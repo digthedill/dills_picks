@@ -38,6 +38,9 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: 850px) {
+    position: fixed;
+    overflow-y: scroll;
+
     display: flex;
     flex-direction: column;
     align-items: center;

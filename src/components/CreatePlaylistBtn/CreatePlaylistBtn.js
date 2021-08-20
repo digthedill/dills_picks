@@ -4,7 +4,7 @@ import useToken from "../../hooks/useToken"
 import stringifySelections from "../../utils/stringifySelections"
 
 import { Container, Button } from "./styles"
-import { FaSpotify } from "react-icons/fa"
+import { AiOutlineArrowRight } from "react-icons/ai"
 
 const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
   const [generatedPlaylist, setGeneratedPlaylist] = useState(false)
@@ -31,12 +31,9 @@ const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
   }
   return (
     <Container>
-      {generatedPlaylist && (
-        <Button>
-          <FaSpotify />
-        </Button>
-      )}
-      <Button onClick={generatePlaylist}>Generate Playlist</Button>
+      <Button onClick={generatePlaylist}>
+        <AiOutlineArrowRight />
+      </Button>
     </Container>
   )
 }

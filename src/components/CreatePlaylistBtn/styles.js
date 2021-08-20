@@ -1,16 +1,16 @@
 import styled from "styled-components"
 const Container = styled.div`
-  width: 85%;
-  margin: 2rem 0;
+  width: 100%;
+  /* margin: 2rem 0; */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `
 
 const Button = styled.button`
-  padding: 0.4rem 1rem;
-  outline: none;
   border: 1px solid #fff;
-  background: rgba(255, 255, 255, 0.09);
+  outline: none;
+  border: none;
+  background: none;
   /* box-shadow: 2px 2px #fff; */
 
   border-radius: 5px;

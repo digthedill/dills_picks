@@ -16,9 +16,6 @@ const SearchContainer = styled.form`
     color: #e8eaf6;
     font-size: 16px;
   }
-  &:focus-within button {
-    border: 1px solid #e8eaf6;
-  }
 
   input {
     /* padding: 0.1rem 0; */
@@ -43,12 +40,15 @@ const SearchContainer = styled.form`
     position: absolute;
     transform: translate(0) scale(1);
     transform-origin: top left;
-    font-size: 1.5rem;
+    font-size: ${({ searchInput }) =>
+      !!searchInput.length ? "16px" : "1.5rem"};
     font-weight: 300;
-    color: #f9f9f9;
+    color: ${({ searchInput }) =>
+      !!searchInput.length ? "#e8eaf6" : "#f9f9f9"};
     z-index: 1;
     transition: all 0.3s ease-in-out;
     pointer-events: none;
+    top: ${({ searchInput }) => (!!searchInput.length ? "-30px" : "0")};
   }
 
   @media (max-width: 550px) {
@@ -63,9 +63,8 @@ const SearchContainer = styled.form`
 const Button = styled.button`
   padding: 0.4rem 1rem;
   outline: none;
-  border: 1px solid #fff;
-  background: rgba(255, 255, 255, 0.09);
-  /* box-shadow: 2px 2px #fff; */
+  border: none;
+  background: none;
 
   border-radius: 5px;
   color: #fff;

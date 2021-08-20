@@ -43,31 +43,23 @@ const Title = styled.div`
 `
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 250px 0 0 1rem;
+  overflow-x: none;
   height: 100%;
   min-width: 400px;
-  /* width: 100%; */
-
-  padding: 0 0 0 4.5rem;
   background: rgba(0, 0, 0, 0.3);
-  /* backdrop-filter: blur(17px); */
   height: 100%;
-  /* width: 100%; */
 
   @media (max-width: 850px) {
-    /* min-width: 100vw; */
-    width: 100%;
     background: none;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-  }
-
-  @media (max-width: 500px) {
-    margin: 0;
-    padding: 0;
+    /* left: 50%;
+    transform: translate(-50%, 0); */
+    padding: 50px 0 0 0;
   }
 `
 
