@@ -4,9 +4,10 @@ import useToken from "../hooks/useToken"
 import stringifySelections from "../utils/stringifySelections"
 import styled from "styled-components"
 import { Button } from "../styles/tools"
+import { FaSpotify } from "react-icons/fa"
 
 const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
-  const [generatedPlayist, setGeneratedPlaylist] = useState(false)
+  const [generatedPlaylist, setGeneratedPlaylist] = useState(false)
   const token = useToken()
 
   const generatePlaylist = () => {
@@ -21,6 +22,7 @@ const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
         max_popularity: 60,
       },
     }).then((res) => {
+      console.log(res.data)
       setPlaylist(res.data.tracks)
     })
   }
@@ -29,18 +31,20 @@ const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
   }
   return (
     <Container>
-      {generatedPlayist && <Button>Play in Spotify</Button>}
-      <Button onClick={generatePlaylist}>Create Playlist</Button>
+      {generatedPlaylist && (
+        <Button>
+          <FaSpotify />
+        </Button>
+      )}
+      <Button onClick={generatePlaylist}>Generate Playlist</Button>
     </Container>
   )
 }
 
 const Container = styled.div`
-  width: 100%;
+  width: 85%;
   margin: 2rem 0;
-
   display: flex;
-
-  justify-content: space-evenly;
+  justify-content: space-between;
 `
 export default CreatePlaylistBtn

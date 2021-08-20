@@ -47,9 +47,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    height: fit-content;
+    /* 
     height: 500px;
-    overflow-y: scroll;
+    overflow-y: scroll; */
   }
 `
 

@@ -67,6 +67,12 @@ const Title = styled.div`
     color: #e8f5e9;
     letter-spacing: 2px;
   }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 3rem;
+    }
+  }
 `
 
 const Container = styled.div`
@@ -93,6 +99,8 @@ const Container = styled.div`
   }
 
   @media (max-width: 500px) {
+    margin: 0;
+    padding: 0;
   }
 `
 

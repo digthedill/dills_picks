@@ -6,8 +6,10 @@ import Autocomplete from "react-autocomplete"
 import { Button } from "../styles/tools"
 
 const SearchBar = ({ userSelections, setUserSelections }) => {
+  // state
   const [searchInput, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
+
   const [error, setError] = useState("")
   const token = useToken()
 
@@ -68,49 +70,54 @@ const SearchBar = ({ userSelections, setUserSelections }) => {
 
   return (
     <div>
-      <SearchContainer onSubmit={storeSelections} className="form_group_field">
-        <Autocomplete
-          type="text"
-          className="form_field"
-          getItemValue={(item) => item.name}
-          onSelect={(val) => setSearch(val)}
-          value={searchInput}
-          onChange={(e) => handleSearch(e)}
-          items={searchResults}
-          inputProps={{
-            placeholder: "Choose Artist",
-          }}
-          open={searchInput.length > 1 ? true : false} //setup support for click away or ESC char
-          menuStyle={{
-            borderRadius: "3px",
-            boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
-            background: "rgba(255, 255, 255, 0.9)",
-            margin: "2px 0",
-            fontSize: "90%",
-            position: "fixed",
-            overflow: "auto",
-            maxHeight: "50%",
-          }}
-          renderItem={(item, isHighlighted) => {
-            return (
-              <div
-                key={item.id}
-                style={{
-                  background: isHighlighted ? "#9fa8da" : "white",
-                  color: isHighlighted ? "#fff" : "#333",
-                  padding: "0.8rem 1rem",
-                }}
-              >
-                {item.name}
-              </div>
-            )
-          }}
-        />
-        <label htmlFor="text" className="form_label">
-          Choose Artist
-        </label>
+      <Container>
+        <SearchContainer
+          onSubmit={storeSelections}
+          className="form_group_field"
+        >
+          <Autocomplete
+            type="text"
+            className="form_field"
+            getItemValue={(item) => item.name}
+            onSelect={(val) => setSearch(val)}
+            value={searchInput}
+            onChange={(e) => handleSearch(e)}
+            items={searchResults}
+            inputProps={{
+              placeholder: "Choose Artist",
+            }}
+            open={searchInput.length > 1 ? true : false} //setup support for click away or ESC char
+            menuStyle={{
+              borderRadius: "3px",
+              boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
+              background: "rgba(255, 255, 255, 0.9)",
+              margin: "2px 0",
+              fontSize: "90%",
+              position: "fixed",
+              overflow: "auto",
+              maxHeight: "50%",
+            }}
+            renderItem={(item, isHighlighted) => {
+              return (
+                <div
+                  key={item.id}
+                  style={{
+                    background: isHighlighted ? "#9fa8da" : "white",
+                    color: isHighlighted ? "#fff" : "#333",
+                    padding: "0.8rem 1rem",
+                  }}
+                >
+                  {item.name}
+                </div>
+              )
+            }}
+          />
+          <label htmlFor="text" className="form_label">
+            Choose Artist
+          </label>
+        </SearchContainer>
         <Button type="submit">Search</Button>
-      </SearchContainer>
+      </Container>
       <p style={{ color: "red", maxWidth: "300px", margin: "1rem 0" }}>
         {error}
       </p>
@@ -118,6 +125,12 @@ const SearchBar = ({ userSelections, setUserSelections }) => {
   )
 }
 
+const Container = styled.div`
+  display: flex;
+  @media (max-width: 500px) {
+    display: block;
+  }
+`
 const SearchContainer = styled.form`
   display: flex;
   position: relative;
@@ -163,10 +176,11 @@ const SearchContainer = styled.form`
     pointer-events: none;
   }
 
-  @media (max-width: 440px) {
+  @media (max-width: 550px) {
     input {
       padding: 0.4rem 0;
       font-size: 1rem;
+      margin-bottom: 0.6rem;
     }
   }
 `

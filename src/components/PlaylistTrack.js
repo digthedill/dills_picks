@@ -89,7 +89,7 @@ const AudioPlayerStyles = styled.div`
   .playIcon,
   .pauseIcon {
     display: ${({ url }) => (url ? "block" : "none")};
-    color: #000;
+    color: rgba(0, 0, 0, 0.8);
     width: 70px;
     height: 70px;
     z-index: 20;

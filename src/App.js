@@ -55,7 +55,7 @@ const Container = styled.main`
   /* BG*/
   background-image: url(${bg});
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
 `
 
