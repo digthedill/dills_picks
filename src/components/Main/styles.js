@@ -12,14 +12,10 @@ const WelcomeText = styled.div`
     padding-left: 0.5rem;
     margin-left: 4rem;
   }
+
   @media (max-width: 1000px) {
     h2 {
       font-size: 5rem;
-    }
-  }
-  @media (max-width: 850px) {
-    h2 {
-      display: none;
     }
   }
 `
@@ -27,14 +23,13 @@ const WelcomeText = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  overflow-x: none;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
   @media (max-width: 850px) {
-    display: ${(props) => (props.playlist.length < 1 ? "none" : "block")};
+    display: ${({ playlist }) => (playlist.length < 1 ? "none" : "block")};
     max-width: 650px;
   }
 `

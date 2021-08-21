@@ -10,6 +10,10 @@ const AudioPlayerStyles = styled.div`
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.7);
   }
 
+  img {
+    width: 150px;
+    height: 150px;
+  }
   div {
     width: 150px;
     height: 150px;
@@ -27,13 +31,30 @@ const AudioPlayerStyles = styled.div`
     height: 70px;
     z-index: 20;
   }
+
+  @media (max-width: 600px) {
+    img {
+      width: 90px;
+      height: 90px;
+    }
+    div {
+      width: 90px;
+      height: 90px;
+    }
+    .playIcon,
+    .pauseIcon {
+      width: 40px;
+      height: 40px;
+    }
+  }
 `
 
 const Wrapper = styled.div`
   display: flex;
   align-items: start;
-  div {
+  .track-info {
     color: #fff;
+    margin-top: 0.5rem;
     h5 {
       font-size: 1.5rem;
     }

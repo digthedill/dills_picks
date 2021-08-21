@@ -22,7 +22,6 @@ const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
         max_popularity: 60,
       },
     }).then((res) => {
-      console.log(res.data)
       setPlaylist(res.data.tracks)
     })
   }
@@ -30,11 +29,9 @@ const CreatePlaylistBtn = ({ userSelections, setPlaylist }) => {
     return null
   }
   return (
-    <Container>
-      <Button onClick={generatePlaylist}>
-        <AiOutlineArrowRight />
-      </Button>
-    </Container>
+    <Button onClick={generatePlaylist}>
+      <AiOutlineArrowRight />
+    </Button>
   )
 }
 

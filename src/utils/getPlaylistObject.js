@@ -10,7 +10,7 @@ const getSpotifyObject = (token, query, cb) => {
       params: {
         q: query,
         type: "artist,track,album",
-        limit: 8,
+        limit: 5,
       },
     })
     .then((response) => {

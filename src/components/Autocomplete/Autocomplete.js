@@ -14,10 +14,6 @@ const Autocomplete = ({
   useOutsideClick(ref, () => {
     if (display) setDisplay(false)
   })
-
-  // instead of making search value a selection
-  // on click fire playlist object
-
   useEffect(() => {
     if (searchResults.length > 1 && !!searchInput) {
       setDisplay(true)
@@ -51,8 +47,8 @@ const Autocomplete = ({
                 <img
                   src={song.images[2].url}
                   alt={song.name}
-                  width={50}
-                  height={50}
+                  width={40}
+                  height={40}
                 />
               ) : (
                 <img
@@ -74,7 +70,7 @@ const Autocomplete = ({
 }
 
 const Container = styled.div`
-  width: 75%;
+  width: 90%;
   margin-top: 0.3rem;
   background: #fff;
 
@@ -84,10 +80,16 @@ const Container = styled.div`
     align-items: center;
     cursor: pointer;
     user-select: none;
+
     background: ${({ hover }) => (hover ? "blue" : "#fff")};
     span {
-      margin-left: 0.5rem;
+      margin-left: 0.8rem;
+      color: #000;
     }
+  }
+
+  @media (max-width: 850px) {
+    width: 75%;
   }
 `
 

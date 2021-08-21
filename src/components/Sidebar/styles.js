@@ -1,8 +1,5 @@
 import styled from "styled-components"
 
-// for 'ChosenArtist'
-// create a button to remove from userSelections
-
 const ChosenArtist = styled.div`
   max-width: 300px;
   margin-top: 1rem;
@@ -21,8 +18,6 @@ const Title = styled.div`
   margin-bottom: 3rem;
   h1 {
     margin: 0;
-
-    /* Add some color variation */
     color: #fff;
     font-size: 4rem;
     span {
@@ -43,12 +38,8 @@ const Title = styled.div`
 `
 
 const Container = styled.div`
-  padding: 250px 0 0 1rem;
-  overflow-x: none;
-  height: 100%;
-  min-width: 400px;
+  padding: 270px 2rem 0 2rem;
   background: rgba(0, 0, 0, 0.3);
-  height: 100%;
 
   @media (max-width: 850px) {
     background: none;

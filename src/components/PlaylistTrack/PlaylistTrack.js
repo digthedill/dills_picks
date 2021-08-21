@@ -55,11 +55,9 @@ const PlaylistTrack = ({ children, currentlyPlaying, setCurrentlyPlaying }) => {
             src={albumArtwork}
             alt={trackName + " img"}
             className="thumbnail-preview"
-            width="150"
-            height="150"
           />
         </AudioPlayerStyles>
-        <div>
+        <div className="track-info">
           <h5>{trackName}</h5>
           <p>{artist}</p>
         </div>

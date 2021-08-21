@@ -1,6 +1,4 @@
-- flexbox on sidebar moves content too dynamically - needs stability
-- create custom autocomplete component https://www.youtube.com/watch?v=vXO5JMiKtM8&ab_channel=LessononCoding
-- Create custom audio player
+- autocomplete needs key binding and work on desktop view (content shifts off screen)
 - link user spotify information
 - add artist profile on hover state
 - discogs API? [https://www.discogs.com/developers#page:home,header:home-general-information]
