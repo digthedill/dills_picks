@@ -1,5 +1,3 @@
-import React from "react"
-
 import { Container, Title, ChosenArtist } from "./styles"
 
 import CreatePlaylistBtn from "../CreatePlaylistBtn"

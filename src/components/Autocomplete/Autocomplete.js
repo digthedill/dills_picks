@@ -4,44 +4,53 @@ import useOutsideClick from "../../hooks/useOutsideClick"
 
 const Autocomplete = ({
   searchResults,
+  setSearchResults,
   searchInput,
   setSearchInput,
   storeSelections,
+  setCurrentFocus,
+  currentFocus,
 }) => {
   const [display, setDisplay] = useState(false)
   const ref = useRef()
 
+  // handle autocomplete display off
   useOutsideClick(ref, () => {
     if (display) setDisplay(false)
   })
   useEffect(() => {
     if (searchResults.length > 1 && !!searchInput) {
       setDisplay(true)
-    } else setDisplay(false)
-  }, [searchResults, searchInput])
+    } else {
+      setDisplay(false)
+    }
+  }, [searchResults, searchInput, setSearchResults])
 
-  const hoverSelection = (e, hover) => {
+  const hoverSelection = (e, hover, idx = null) => {
+    setCurrentFocus(idx)
+
     e.target.style.background = hover ? "#757de8" : "#fff"
     e.target.style.color = hover ? "#fff" : "#000"
   }
+
   const setArtist = (song) => {
     setSearchInput(song)
     setDisplay(false)
-
     storeSelections(song)
   }
 
   if (display) {
     return (
       <Container ref={ref}>
-        {searchResults.map((song) => {
+        {searchResults.map((song, i) => {
           return (
-            <div
+            <SongSuggestion
               key={song.id}
-              onMouseEnter={(e) => hoverSelection(e, true)}
+              onMouseEnter={(e) => hoverSelection(e, true, i)}
               onMouseLeave={(e) => hoverSelection(e, false)}
               className="song-suggestion"
               onClick={() => setArtist(song.name)}
+              isCurrent={i === currentFocus}
             >
               {song.images[2] ? (
                 <img
@@ -59,7 +68,7 @@ const Autocomplete = ({
                 />
               )}
               <span>{song.name}</span>
-            </div>
+            </SongSuggestion>
           )
         })}
       </Container>
@@ -69,24 +78,24 @@ const Autocomplete = ({
   return null
 }
 
+const SongSuggestion = styled.div`
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  color: ${({ isCurrent }) => (isCurrent ? "#fff" : "#000")};
+  background: ${({ isCurrent }) => (isCurrent ? "#757de8" : "#fff")};
+  span {
+    margin-left: 0.8rem;
+    color: #000;
+  }
+`
+
 const Container = styled.div`
   width: 90%;
   margin-top: 0.3rem;
   background: #fff;
-
-  .song-suggestion {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-
-    background: ${({ hover }) => (hover ? "blue" : "#fff")};
-    span {
-      margin-left: 0.8rem;
-      color: #000;
-    }
-  }
 
   @media (max-width: 850px) {
     width: 75%;
